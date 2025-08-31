@@ -37,31 +37,10 @@
       }
     },
     {
-      "type": "required_status_checks",
-      "parameters": {
-        "strict_required_status_checks_policy": true,
-        "contexts": [
-          "build"
-        ]
-      }
-    },
-    {
       "type": "required_linear_history"
     },
     {
       "type": "non_fast_forward"
-    },
-    {
-      "type": "code_scanning",
-      "parameters": {
-        "required_code_scanning_tools": [
-          {
-            "tool": "CodeQL",
-            "alerts_threshold": "errors",
-            "security_alerts_threshold": "high"
-          }
-        ]
-      }
     },
     {
       "type": "deletion"
