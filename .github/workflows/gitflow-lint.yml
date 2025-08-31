@@ -1,0 +1,27 @@
+name: GitFlow Compliance
+
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          branch="${GITHUB_HEAD_REF}"
+          target="${GITHUB_BASE_REF}"
+
+          if [[ "$target" == "develop" && ! "$branch" =~ ^feature/ ]]; then
+            echo "❌ Only feature/* branches can merge into develop"
+            exit 1
+          fi
+
+          if [[ "$target" == "main" && ! "$branch" =~ ^release/|^hotfix/ ]]; then
+            echo "❌ Only release/* or hotfix/* branches can merge into main"
+            exit 1
+          fi
+
+          echo "✅ Branch naming valid"
+
