@@ -44,6 +44,13 @@
     },
     {
       "type": "deletion"
-    }
+    },
+    {
+  "type": "branch_name_pattern",
+  "parameters": {
+    "operator": "regex",
+    "pattern": "^(feature|hotfix|release)/[a-z0-9._-]+$"
+  }
+}
   ]
 }
