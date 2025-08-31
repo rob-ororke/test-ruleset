@@ -1,0 +1,64 @@
+rulesets:
+  - name: "Main Branch Protection"
+    target: branch
+    enforcement: true
+    conditions:
+      ref_name:
+        include: ["main"]
+    rules:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews_on_push: true
+      required_status_checks:
+        strict_required_status_checks_policy: true
+        contexts: ["build", "tests"]
+      restrict_pushes:
+        users: []
+        teams: []
+        apps: []
+      required_linear_history: true
+      block_force_pushes: true
+      block_deletions: true
+
+  - name: "Develop Branch Protection"
+    target: branch
+    enforcement: true
+    conditions:
+      ref_name:
+        include: ["develop"]
+    rules:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      required_status_checks:
+        strict_required_status_checks_policy: true
+        contexts: ["build", "tests"]
+      block_force_pushes: true
+      block_deletions: true
+
+  - name: "Feature Branch Rules"
+    target: branch
+    enforcement: true
+    conditions:
+      ref_name:
+        include: ["feature/*"]
+    rules:
+      creation: true
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      required_status_checks:
+        contexts: ["build"]
+
+  - name: "Release & Hotfix Branch Rules"
+    target: branch
+    enforcement: true
+    conditions:
+      ref_name:
+        include: ["release/*", "hotfix/*"]
+    rules:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+      required_status_checks:
+        contexts: ["build", "tests"]
+      block_force_pushes: true
+      block_deletions: true
+
