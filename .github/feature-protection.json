@@ -1,0 +1,28 @@
+{
+  "name": "Feature branch rules",
+  "enforcement": "active",
+  "target": "branch",
+  "bypass_actors": [],
+  "conditions": {
+    "ref_name": {
+      "include": ["feature/*"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 1
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": false,
+        "contexts": ["build"]
+      }
+    }
+  ]
+}
+

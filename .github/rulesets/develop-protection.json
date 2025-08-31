@@ -1,0 +1,44 @@
+{
+  "name": "Develop branch protection",
+  "enforcement": "active",
+  "source_type": "Repository",
+  "target": "branch",
+  "bypass_actors": [],
+  "conditions": {
+    "ref_name": {
+      "include": ["develop"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 1,
+        "require_code_owner_review": false,
+        "require_last_push_approval": true,
+        "dismiss_stale_reviews_on_push": true,
+        "required_review_thread_resolution": false
+      }
+    },
+    {
+      "type": "commit_message_pattern",
+      "parameters": {
+        "name": "",
+        "negate": false,
+        "pattern": "^EX_\\d{3}: (build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test){1}(\\([\\w\\-\\.]+\\))?(!)?: ([\\w ])+([\\s\\S]*)",
+        "operator": "regex"
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "contexts": ["build"]
+      }
+    },
+    { "type": "required_linear_history" },
+    { "type": "deletion" }
+  ]
+}
+

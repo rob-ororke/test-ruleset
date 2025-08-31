@@ -19,3 +19,29 @@ When these rules are not followed then an error message is displayed and the job
 ### rulesets.yml
 
 Defines the rulesets that apply to the various branches.
+
+### rule for commit messages
+
+Example Matching Commit Message
+EX_123: feat(auth)!: Add login throttling to prevent brute-force attacks
+🔍 Breakdown of Pattern Match
+EX_123: → Matches ^EX_\d{3}
+feat(auth)!: → Matches (type)(scope)?(!)?
+feat is one of the allowed types
+(auth) is the optional scope
+! indicates a breaking change (optional)
+Add login throttling to prevent brute-force attacks → Matches the description
+
+
+### Commands
+
+```bash
+# List rulesets
+gh ruleset list -R OWNER/REPO
+
+# View one ruleset (pass an ID from the list)
+gh ruleset view RULESET_ID -R OWNER/REPO
+
+# Check which rules apply to a branch
+gh ruleset check develop -R OWNER/REPO
+```
