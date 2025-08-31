@@ -21,7 +21,7 @@ rulesets:
       block_deletions: true
 
   - name: "Develop Branch Protection"
-    target: branch1
+    target: branch
     enforcement: true
     conditions:
       ref_name:
