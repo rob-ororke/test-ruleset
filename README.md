@@ -1,6 +1,6 @@
 Investigate how RuleSets work
 ===
 
-# Apply using UI
+## Apply using UI
 
-# Apply using gh
+## Apply using gh
